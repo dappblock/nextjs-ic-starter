@@ -3,7 +3,13 @@
     "version": "0.1.0",
     "author": "Henry Chan",
     "description": "Next.js Internet Computer Starter Template",
-    "keywords": ["nextjs", "internet computer", "icp", "starter", "dfinity"],
+    "keywords": [
+        "nextjs",
+        "internet computer",
+        "icp",
+        "starter",
+        "dfinity"
+    ],
     "scripts": {
         "dev": "next dev",
         "build": "next build && next export",
@@ -13,7 +19,9 @@
     },
     "devDependencies": {
         "eslint": "^7.29.0",
-        "eslint-config-next": "^11.0.0"
+        "eslint-config-next": "^11.0.0",
+        "eslint-plugin-react": "^7.24.0",
+        "eslint-plugin-react-hooks": "^4.2.0"
     },
     "dependencies": {
         "@dfinity/agent": "^0.9.1",
