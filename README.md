@@ -11,6 +11,7 @@ git clone https://github.com/dappblock/nextjs-ic-starter
 
 Enter the commands:
 ```bash
+cd nextjs-ic-starter
 npm install
 dfx start
 dfx deploy
@@ -22,3 +23,18 @@ http://localhost:3000/
 
 
 ## Project Structure
+TODO
+
+## Using IC as frontend & backend
+TODO
+
+## Using IC as backend
+TODO
+
+## Deploy to IC Local Canister
+TODO
+
+## Deploy to IC Network Canister
+TODO
+
+
