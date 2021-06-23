@@ -1,0 +1,31 @@
+{
+    "name": "nextjs_ic_template",
+    "version": "0.1.0",
+    "author": "Henry Chan",
+    "description": "Next.js Internet Computer Starter Template",
+    "keywords": [],
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build && next export",
+        "start": "next start",
+        "lint": "next lint",
+        "export": "next export"
+    },
+    "devDependencies": {
+        "eslint": "7.29.0",
+        "eslint-config-next": "11.0.0"
+    },
+    "dependencies": {
+        "@dfinity/agent": "0.9.1",
+        "@dfinity/candid": "0.9.1",
+        "@dfinity/principal": "0.9.1",
+        "assert": "2.0.0",
+        "buffer": "6.0.3",
+        "events": "3.3.0",
+        "next": "11.0.0",
+        "react": "17.0.2",
+        "react-dom": "17.0.2",
+        "stream-browserify": "3.0.0",
+        "util": "0.12.4"
+    }
+}
