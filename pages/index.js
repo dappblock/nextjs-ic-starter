@@ -19,8 +19,10 @@ function HomePage() {
     const onLoadCount = 1;
     useEffect(() => {
         async function onLoad() {
-            await agent.fetchRootKey();
-            console.info(`Agent fetched root key`);
+            if (isLocalIC) {
+                await agent.fetchRootKey();
+                console.info(`Agent fetched root key`);
+            }
         }
 
         onLoad();
