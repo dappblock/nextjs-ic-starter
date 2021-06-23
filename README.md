@@ -25,6 +25,8 @@ http://localhost:3000/
 ## Project Structure
 TODO
 
+## Local dev with fast code changes reload
+
 ## Using IC as frontend & backend
 TODO
 
