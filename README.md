@@ -1,10 +1,25 @@
+## Introduction
+This project provides a simple starter template for Dfinity Internet Computer using Next.js framework as frontend.
+
+It has custom webpack config in next.config.js for accessing generated dfx Mokoto actor in backend.
+
+**Backend**  
+The backend is a simple greeting hello world actor function coded in Mokoto under src/hello/main.mo .
+
+**Frontend**  
+
+
+## Live Demo
+https://u4gun-5aaaa-aaaah-qabma-cai.raw.ic0.app
+
+
 ## Quick Start
 Install:
 
 * NodeJS 14.*
 * Internet Computer dfx CLI
 
-Clone the Git repository:  
+Clone this Git repository:  
 ```bash
 git clone https://github.com/dappblock/nextjs-ic-starter
 ```
@@ -38,5 +53,15 @@ TODO
 
 ## Deploy to IC Network Canister
 TODO
+
+## Author
+Henry Chan, henry@controlaltdevelop.com
+Twitter: @kinwo
+
+## Contributing
+Pleaes feel free to raise issue or submit a pull request.
+
+## License
+MIT
 
 
