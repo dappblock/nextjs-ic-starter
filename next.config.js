@@ -9,6 +9,8 @@ const dfxAlias = Object.entries(dfxJson.canisters).reduce(
     (acc, [name, _value]) => {
         // Get the network name, or `local` by default.
         const networkName = process.env["DFX_NETWORK"] || "local";
+        console.info(`${name}: Using network ${networkName}`);
+
         const outputRoot = path.join(
             __dirname,
             ".dfx",
