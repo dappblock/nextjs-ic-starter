@@ -1,10 +1,10 @@
 ## Introduction
 This project provides a simple starter template for Dfinity Internet Computer using Next.js framework as frontend.
 
-It has custom webpack config in next.config.js for accessing generated dfx Mokoto actor in backend.
+It has custom webpack config in next.config.js for accessing generated dfx Motoko actor in backend.
 
 **Backend**  
-The backend is a simple greeting hello world actor function coded in Mokoto under src/hello/main.mo .
+The backend is a simple greeting hello world actor function coded in Motoko under src/hello/main.mo .
 
 **Frontend**  
 
