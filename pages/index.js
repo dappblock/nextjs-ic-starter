@@ -8,10 +8,10 @@ import styles from '../styles/Home.module.css'
 import { Actor, HttpAgent } from '@dfinity/agent';
 import { idlFactory as hello_idl, canisterId as hello_id } from 'dfx-generated/hello';
 
-const isLocalIC = process.env.NEXT_PUBLIC_DFX_NETWORK === "local" || false;
-
 const agent = new HttpAgent({ host: process.env.NEXT_PUBLIC_IC_HOST });
 const hello = Actor.createActor(hello_idl, { agent, canisterId: hello_id });
+
+const isLocalIC = process.env.NEXT_PUBLIC_DFX_NETWORK === "local" || false;
 
 function HomePage() {
     const [name, setName] = useState('');
