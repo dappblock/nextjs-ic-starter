@@ -28,19 +28,15 @@ Clone this Git repository:
 git clone https://github.com/dappblock/nextjs-ic-starter
 ```
 
-Open 2 command terminals
-
-Terminal 1:
-Enter the commands to start dfx local server:  
+Open command terminal:
+Enter the commands to start dfx local server in background:  
 ```bash
 cd nextjs-ic-starter
-dfx start
+dfx start --background
 ```
 
-Terminal 2:  
 Enter the commands to install dependencies, deploy canister and run Next.js dev server:  
 ```bash
-cd nextjs-ic-starter
 npm install
 dfx deploy
 npm run dev
@@ -48,6 +44,11 @@ npm run dev
 
 Open in Chrome the following URL to try the demo app:  
 http://localhost:3000/
+
+Cleanup - stop dfx server running in background:  
+```bash
+dfx stop
+```
 
 ## Project Structure
 Internet Computer has the concept of [Canister](https://sdk.dfinity.org/docs/developers-guide/concepts/canisters-code.html) which is a computation unit. This project has 2 canisters:
@@ -81,24 +82,52 @@ const greeting = await hello.greet(name);
 
 The beautiful part is you can invoke the hello actor greet function with async/await style as if they are on the same platform.
 
-Webpack configuration:
+Webpack configuration:  
 In the code above, **'dfx-generated/hello'** is alias created dynamically through Webpack custom configuration. It will make reference to /.dfx/local/canisters/hello/hello.js or /.dfx/ic/canisters/hello/hello.js depending if you deploy to local DFX server or remote Internet Computer IC network. In Next.js, it's located in next.config.js. That is why before you run Next.js server with **npm run dev**, **dfx deploy** command must be run first in order to generate the required JavaScript code in /.dfx.
 
-## Local dev with hot code deploy  
-Most of the Next.js developers are familar with the hot code deploy in Next.js dev environment.
+## Backend dev
+After marking changes in backend code e.g main.mo in /src/hello, you can deploy it to the local DFX server using:
 
+```bash
+dfx deploy hello
+```
 
+**hello** is the backend canister name defined in dfx.json.
+
+## Frontend dev - Next.js Static Code
+Next.js developers are familar with handy the hot code deploy in Next.js dev environment when making changes in frontend code. 
+
+After deploying your backend code as shown above, you can run Next.js local dev server **npm run dev** and edit your frontend code with all the benefits of hotcode deploy.
+
+One thing to note is we use Next.js static code export here so we can't use any features of Next.js that require server side NodeJS. I think potentially there would be ways to use Internet Computer canister as backend while deploying Next.js dapp to a hosting like Vercel that supports NodeJS server. Further research is needed on that aspect.
+
+## Deploy and run frontend in local DFX server
+In order to simulate the whole Internet Computer experience, you can deploy and run frontend code to local DFX server by running:  
+
+```bash
+npm run build
+dfx deploy hello_assets
+```
+
+**hellow_assets** is the frontend canister defined in dfx.json.
+
+**npm run build** builds and export Next.js as static code storing in /out folder which would be picked up by **dfx deploy hellow_assets** as defined in dfx.json with **out** as the source.
+
+When it completes, you can open Chrome and browse to:  
+http://localhost:8000/?canisterId=[canisterId]
+
+Replace [canisterId] with the hello_assets canister ID which you can find by running:  
+
+```bash
+dfx canister id hello_assets
+```
 
 ## Environment Configuration
-
-## Using IC as frontend & backend
-TODO
-
-## Using IC as backend
-TODO
+TODO 
 
 ## Deploy to IC Network Canister
-TODO
+The funniest part is to deploy your Next.js / Internet Computer Dapp to production Internet Computer IC blockchain network. 
+
 
 ## Author
 Henry Chan, henry@controlaltdevelop.com  
