@@ -59,7 +59,7 @@ Internet Computer has the concept of [Canister](https://sdk.dfinity.org/docs/dev
 Canister configuration are stored in dfx.json.
 
 ### Backend  
-Backend code is inside /src/hello/main.mo writting in [Motoko language](https://sdk.dfinity.org/docs/language-guide/motoko.html). Motoko is type-safe language with modern language features like async/await and actor build-in. It also has [Orthogonal persistence](https://sdk.dfinity.org/docs/language-guide/motoko.html) which I find it very interesting.
+Backend code is inside /src/hello/main.mo writting in [Motoko language](https://sdk.dfinity.org/docs/language-guide/motoko.html). Motoko is a type-safe language with modern language features like async/await and actor build-in. It also has [Orthogonal persistence](https://sdk.dfinity.org/docs/language-guide/motoko.html) which I find it very interesting.
 Frontend code follows Next.js folder convention with /pages storing all React code, /public storing static files including images. This project uses CSS modules for styling which is stored in /styles.
 
 ### Frontend
