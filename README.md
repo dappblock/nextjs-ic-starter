@@ -1,6 +1,7 @@
-<div style="text-align: center; padding: 20px 0;font-size: 1.8rem;">
-  <b>Next.js Internet Computer Starter Template</b>
-</div>
+<p>
+<h2 align="center">Next.js Internet Computer Starter Template</h2>
+</p>
+
 
 ## Introduction
 This project provides a simple starter template for Dfinity Internet Computer using Next.js framework as frontend.
