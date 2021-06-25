@@ -1,18 +1,12 @@
-<p>
-<h2 align="center">Next.js Internet Computer Starter Template</h2>
-</p>
+# Next.js Internet Computer Starter Template
 
-
-## Introduction
 This project provides a simple starter template for Dfinity Internet Computer using Next.js framework as frontend.
 
-It has custom webpack config in next.config.js for accessing generated dfx Motoko actor in backend.
-
 **Backend**  
-A simple greeting hello world actor function coded in Motoko under src/hello/main.mo
+A simple greeting hello world actor function coded in Motoko.
 
-**Frontend**
-A simple React HTML form with input string, sending it to greet actor in backend and showing the returned result.
+**Frontend**  
+A simple React HTML form with name input, sending it to greet actor in backend and showing the returned result.
 
 ## Live Demo in IC Mainnet 🥳 
 https://u4gun-5aaaa-aaaah-qabma-cai.raw.ic0.app
