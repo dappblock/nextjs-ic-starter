@@ -123,11 +123,63 @@ dfx canister id hello_assets
 ```
 
 ## Environment Configuration
-TODO 
+There are three key configs following in Next.js [Environment Variables](https://nextjs.org/docs/basic-features/environment-variables) configuration:  
+
+**.env.development** stores configs for use in local dev.
+
+```
+NEXT_PUBLIC_IC_HOST=http://localhost:8000
+DFX_NETWORK=local
+```
+
+**.env.production** is used when building and exporting static code using **npm run buld**
+
+```
+NEXT_PUBLIC_IC_HOST=http://localhost:8000
+DFX_NETWORK=local
+```
+
+Notice both files are identical if we want the Next.js dapp to interact with local dfx server.
+
+**.env** stores the common configs used in all environments.
+
+```
+NEXT_PUBLIC_DFX_NETWORK=$DFX_NETWORK
+```
+
+Note **NEXT_PUBLIC** is the prefix used by Next.js to make env vars available to client side code through [build time inlining](https://nextjs.org/docs/basic-features/environment-variables).
+
+**.env.ic** is included for deployment to Internet Computer ic network which would be covered below.
 
 ## Deploy to IC Network Canister
 The funniest part is to deploy your Next.js / Internet Computer Dapp to production Internet Computer IC blockchain network. 
 
+To do that you will need:  
+
+* ICP tokens and convert it to [cycles](https://sdk.dfinity.org/docs/developers-guide/concepts/tokens-cycles.html)
+* Cycles wallet
+
+Dfiniy will offer [free cycle](https://dfinity.org/developers/) to developers soon at the time of writting. In the meantime, you can buy ICP from [crypto exchanges](https://coinmarketcap.com/currencies/internet-computer/markets/) like what I did.
+
+Follow the [Network Deployment](https://sdk.dfinity.org/docs/quickstart/network-quickstart.html) guide to create wallet.
+
+After that, you can deploy your Next.js dapp to Internet Computer IC network by adding **--network ic** to the dfx subcommand.  
+
+```bash
+cp .env.ic .env.production
+dfx deploy --network ic hello
+npm run build
+dfx deploy --network ic hello_assets
+```
+
+Open Chrome and go to https://[canisterId].raw.ic0.app/   
+Replace [canisterId] by the hello_assets canister id in IC network. You can find it by running:  
+
+```bash
+dfx canister --network ic id hello_assets
+```
+
+Congratulations !! Well Done !! 👏 🚀 🎉
 
 ## Author
 Henry Chan, henry@controlaltdevelop.com  
