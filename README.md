@@ -159,11 +159,11 @@ To do that you will need:
 * ICP tokens and convert it to [cycles](https://sdk.dfinity.org/docs/developers-guide/concepts/tokens-cycles.html)
 * Cycles wallet
 
-Dfiniy will offer [free cycle](https://dfinity.org/developers/) to developers soon at the time of writting. In the meantime, you can buy ICP from [crypto exchanges](https://coinmarketcap.com/currencies/internet-computer/markets/) like what I did.
+Dfiniy will offer [free cycle](https://dfinity.org/developers/) to developers soon at the time of writting. In the meantime, you can buy ICP from [crypto exchanges](https://coinmarketcap.com/currencies/internet-computer/markets/) like what I did and transfer the ICP tokens to your wallet.
 
 Follow the [Network Deployment](https://sdk.dfinity.org/docs/quickstart/network-quickstart.html) guide to create wallet.
 
-After that, you can deploy your Next.js dapp to Internet Computer IC network by adding **--network ic** to the dfx subcommand.  
+Now, you can deploy your Next.js dapp to Internet Computer IC network by adding **--network ic** to the dfx subcommand. We will first update our env var to point to IC network host. Then deploy backend canister **hello** first, export Next.js static code and deploy frontend canister **hello_assets**.
 
 ```bash
 cp .env.ic .env.production
@@ -180,6 +180,9 @@ dfx canister --network ic id hello_assets
 ```
 
 Congratulations !! Well Done !! 👏 🚀 🎉
+
+## Troubleshooting
+TODO - use Chrome Dev Tools / Console / Network
 
 ## Author
 Henry Chan, henry@controlaltdevelop.com  
