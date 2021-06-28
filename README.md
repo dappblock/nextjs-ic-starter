@@ -95,7 +95,7 @@ dfx deploy hello
 **hello** is the backend canister name defined in dfx.json.
 
 ## Frontend dev - Next.js Static Code
-Next.js developers are familar with handy the hot code deploy in Next.js dev environment when making changes in frontend code. 
+Next.js developers are familar with the handy hot code deploy in Next.js dev environment when making changes in frontend code. 
 
 After deploying your backend code as shown above, you can run Next.js local dev server **npm run dev** and edit your frontend code with all the benefits of hotcode deploy.
 
