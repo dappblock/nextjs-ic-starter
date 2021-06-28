@@ -109,9 +109,9 @@ npm run build
 dfx deploy hello_assets
 ```
 
-**hellow_assets** is the frontend canister defined in dfx.json.
+**hello_assets** is the frontend canister defined in dfx.json.
 
-**npm run build** builds and export Next.js as static code storing in /out folder which would be picked up by **dfx deploy hellow_assets** as defined in dfx.json with **out** as the source.
+**npm run build** builds and export Next.js as static code storing in /out folder which would be picked up by **dfx deploy hello_assets** as defined in dfx.json with **out** as the source.
 
 When it completes, you can open Chrome and browse to:  
 http://localhost:8000/?canisterId=[canisterId]
