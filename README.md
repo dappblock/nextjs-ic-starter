@@ -109,6 +109,7 @@ One thing to note is we use Next.js static code export here so we can't use any 
 In order to simulate the whole Internet Computer experience, you can deploy and run frontend code to local DFX server by running:  
 
 ```bash
+dfx start --background
 npm run build
 dfx deploy hello_assets
 ```
