@@ -128,7 +128,7 @@ dfx canister id hello_assets
 ```
 
 ## Environment Configuration
-There are three key configs following in Next.js [Environment Variables](https://nextjs.org/docs/basic-features/environment-variables) configuration:  
+There are three key configs following Next.js [Environment Variables](https://nextjs.org/docs/basic-features/environment-variables) configuration:  
 
 **.env.development** stores configs for use in local dev.
 
