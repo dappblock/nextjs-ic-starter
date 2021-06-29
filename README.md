@@ -35,6 +35,8 @@ cd nextjs-ic-starter
 dfx start --background
 ```
 
+Note: If you run it in MacOS, you may be asked allow connections from dfx local server.
+
 Enter the commands to install dependencies, deploy canister and run Next.js dev server:  
 ```bash
 npm install
