@@ -157,7 +157,7 @@ Note **NEXT_PUBLIC** is the prefix used by Next.js to make env vars available to
 **.env.ic** is included for deployment to Internet Computer ic network which would be covered below.
 
 ## Deploy to IC Network Canister
-The funniest part is to deploy your Next.js / Internet Computer Dapp to production Internet Computer IC blockchain network. 
+The most exciting part is to deploy your Next.js / Internet Computer Dapp to production Internet Computer IC blockchain network. 
 
 To do that you will need:  
 
