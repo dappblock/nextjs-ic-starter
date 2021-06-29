@@ -87,7 +87,7 @@ const greeting = await hello.greet(name);
 The beautiful part is you can invoke the hello actor greet function with async/await style as if they are on the same platform.
 
 Webpack configuration:  
-In the code above, **'dfx-generated/hello'** is alias created dynamically through Webpack custom configuration. It will make reference to /.dfx/local/canisters/hello/hello.js or /.dfx/ic/canisters/hello/hello.js depending if you deploy to local DFX server or remote Internet Computer IC network. In Next.js, it's located in next.config.js. That is why before you run Next.js server with **npm run dev**, **dfx deploy** command must be run first in order to generate the required JavaScript code in /.dfx.
+In the code above, the import module **'dfx-generated/hello'** is alias created dynamically through Webpack custom configuration. It will make reference to /.dfx/local/canisters/hello/hello.js or /.dfx/ic/canisters/hello/hello.js depending if you deploy to local DFX server or remote Internet Computer IC network. In Next.js, it's located in next.config.js. That is why before you run Next.js server with **npm run dev**, **dfx deploy** command must be run first in order to generate the required JavaScript code in /.dfx.
 
 ## Backend dev
 After marking changes in backend code e.g main.mo in /src/hello, you can deploy it to the local DFX server using:
