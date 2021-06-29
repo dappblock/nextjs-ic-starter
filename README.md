@@ -18,6 +18,7 @@ Install:
 
 * NodeJS 14.* or higher https://nodejs.org/en/download/ 
 * Internet Computer dfx CLI https://sdk.dfinity.org/docs/quickstart/local-quickstart.html
+* Visual Studio Code (Recommended Code Editor) https://code.visualstudio.com/Download
 
 ```bash
 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
