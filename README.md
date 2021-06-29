@@ -187,7 +187,7 @@ dfx canister --network ic id hello_assets
 Congratulations !! Well Done !! 👏 🚀 🎉
 
 ## Troubleshooting
-TODO - use Chrome Dev Tools / Console / Network
+Use Chrome Dev Tools / Console / Network. Check if the dapp uses the right canister id and hostname.
 
 ## Author
 Henry Chan, henry@controlaltdevelop.com  
