@@ -184,6 +184,13 @@ Congratulations !! Well Done !! 👏 🚀 🎉
 ## Troubleshooting
 TODO - use Chrome Dev Tools / Console / Network
 
+## Tricks
+To start local canister with no [artifical delay](https://sdk.dfinity.org/docs/release-notes/0.7.1-rn.html):
+
+```bash
+dfx start --no-artificial-delay --background
+```
+
 ## Author
 Henry Chan, henry@controlaltdevelop.com  
 Twitter: @kinwo
