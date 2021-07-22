@@ -18,6 +18,8 @@ Install:
 
 * NodeJS 14.* or higher https://nodejs.org/en/download/ 
 * Internet Computer dfx CLI https://sdk.dfinity.org/docs/quickstart/local-quickstart.html
+* Visual Studio Code (Recommended Code Editor) https://code.visualstudio.com/Download
+* VSCode extension - Motoko (Recommended) https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko
 
 ```bash
 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
@@ -34,6 +36,8 @@ Enter the commands to start dfx local server in background:
 cd nextjs-ic-starter
 dfx start --background
 ```
+
+Note: If you run it in MacOS, you may be asked allow connections from dfx local server.
 
 Enter the commands to install dependencies, deploy canister and run Next.js dev server:  
 ```bash
@@ -83,7 +87,7 @@ const greeting = await hello.greet(name);
 The beautiful part is you can invoke the hello actor greet function with async/await style as if they are on the same platform.
 
 Webpack configuration:  
-In the code above, **'dfx-generated/hello'** is alias created dynamically through Webpack custom configuration. It will make reference to /.dfx/local/canisters/hello/hello.js or /.dfx/ic/canisters/hello/hello.js depending if you deploy to local DFX server or remote Internet Computer IC network. In Next.js, it's located in next.config.js. That is why before you run Next.js server with **npm run dev**, **dfx deploy** command must be run first in order to generate the required JavaScript code in /.dfx.
+In the code above, the import module **'dfx-generated/hello'** is alias created dynamically through Webpack custom configuration. It will make reference to /.dfx/local/canisters/hello/hello.js or /.dfx/ic/canisters/hello/hello.js depending if you deploy to local DFX server or remote Internet Computer IC network. In Next.js, it's located in next.config.js. That is why before you run Next.js server with **npm run dev**, **dfx deploy** command must be run first in order to generate the required JavaScript code in /.dfx.
 
 ## Backend dev
 After marking changes in backend code e.g main.mo in /src/hello, you can deploy it to the local DFX server using:
@@ -95,7 +99,7 @@ dfx deploy hello
 **hello** is the backend canister name defined in dfx.json.
 
 ## Frontend dev - Next.js Static Code
-Next.js developers are familar with handy the hot code deploy in Next.js dev environment when making changes in frontend code. 
+Next.js developers are familar with the handy hot code deploy in Next.js dev environment when making changes in frontend code. 
 
 After deploying your backend code as shown above, you can run Next.js local dev server **npm run dev** and edit your frontend code with all the benefits of hotcode deploy.
 
@@ -105,13 +109,14 @@ One thing to note is we use Next.js static code export here so we can't use any 
 In order to simulate the whole Internet Computer experience, you can deploy and run frontend code to local DFX server by running:  
 
 ```bash
+dfx start --background
 npm run build
 dfx deploy hello_assets
 ```
 
-**hellow_assets** is the frontend canister defined in dfx.json.
+**hello_assets** is the frontend canister defined in dfx.json.
 
-**npm run build** builds and export Next.js as static code storing in /out folder which would be picked up by **dfx deploy hellow_assets** as defined in dfx.json with **out** as the source.
+**npm run build** builds and export Next.js as static code storing in /out folder which would be picked up by **dfx deploy hello_assets** as defined in dfx.json with **out** as the source.
 
 When it completes, you can open Chrome and browse to:  
 http://localhost:8000/?canisterId=[canisterId]
@@ -123,7 +128,7 @@ dfx canister id hello_assets
 ```
 
 ## Environment Configuration
-There are three key configs following in Next.js [Environment Variables](https://nextjs.org/docs/basic-features/environment-variables) configuration:  
+There are three key configs following Next.js [Environment Variables](https://nextjs.org/docs/basic-features/environment-variables) configuration:  
 
 **.env.development** stores configs for use in local dev.
 
@@ -152,7 +157,7 @@ Note **NEXT_PUBLIC** is the prefix used by Next.js to make env vars available to
 **.env.ic** is included for deployment to Internet Computer ic network which would be covered below.
 
 ## Deploy to IC Network Canister
-The funniest part is to deploy your Next.js / Internet Computer Dapp to production Internet Computer IC blockchain network. 
+The most exciting part is to deploy your Next.js / Internet Computer Dapp to production Internet Computer IC blockchain network. 
 
 To do that you will need:  
 
@@ -182,7 +187,7 @@ dfx canister --network ic id hello_assets
 Congratulations !! Well Done !! 👏 🚀 🎉
 
 ## Troubleshooting
-TODO - use Chrome Dev Tools / Console / Network
+Use Chrome Dev Tools / Console / Network. Check if the dapp uses the right canister id and hostname.
 
 ## Tricks
 To start local canister with no [artifical delay](https://sdk.dfinity.org/docs/release-notes/0.7.1-rn.html):
