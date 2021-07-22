@@ -1,28 +1,25 @@
 {
-  "canisters": {
-    "hello": {
-      "main": "src/hello/main.mo",
-      "type": "motoko"
+    "canisters": {
+        "hello": {
+            "main": "src/hello/main.mo"
+        },
+        "hello_assets": {
+            "dependencies": ["hello"],
+            "source": ["out"],
+            "type": "assets"
+        }
     },
-    "hello_assets": {
-      "dependencies": [
-        "hello"
-      ],
-      "source": ["out"],
-      "type": "assets"
-    }
-  },
-  "defaults": {
-    "build": {
-      "packtool": ""
-    }
-  },
-  "dfx": "0.7.2",
-  "networks": {
-    "local": {
-      "bind": "127.0.0.1:8000",
-      "type": "ephemeral"
-    }
-  },
-  "version": 1
+    "defaults": {
+        "build": {
+            "packtool": ""
+        }
+    },
+    "dfx": "0.7.2",
+    "networks": {
+        "local": {
+            "bind": "127.0.0.1:8000",
+            "type": "ephemeral"
+        }
+    },
+    "version": 1
 }
