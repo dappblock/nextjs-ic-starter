@@ -39,6 +39,7 @@ function HomePage() {
     }
 
     async function sayGreeting() {
+        setGreetingMessage("")
         setLoading("Loading...")
         const greeting = await hello.greet(name)
         setLoading("")
