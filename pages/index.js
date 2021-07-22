@@ -1,42 +1,48 @@
 /* eslint-disable @next/next/no-img-element */
 // Next, React
-import Head from 'next/head'
-import { useState, useEffect } from 'react';
-import styles from '../styles/Home.module.css'
+import Head from "next/head"
+import { useState, useEffect } from "react"
+import styles from "../styles/Home.module.css"
 
 // Dfinity
-import { Actor, HttpAgent } from '@dfinity/agent';
-import { idlFactory as hello_idl, canisterId as hello_id } from 'dfx-generated/hello';
+import { Actor, HttpAgent } from "@dfinity/agent"
+import {
+    idlFactory as hello_idl,
+    canisterId as hello_id,
+} from "dfx-generated/hello"
 
-const agent = new HttpAgent({ host: process.env.NEXT_PUBLIC_IC_HOST });
-const hello = Actor.createActor(hello_idl, { agent, canisterId: hello_id });
+const agent = new HttpAgent({ host: process.env.NEXT_PUBLIC_IC_HOST })
+const hello = Actor.createActor(hello_idl, { agent, canisterId: hello_id })
 
-const isLocalIC = process.env.NEXT_PUBLIC_DFX_NETWORK === "local" || false;
+const isLocalIC = process.env.NEXT_PUBLIC_DFX_NETWORK === "local" || false
 
 function HomePage() {
-    const [name, setName] = useState('');
-    const [greetingMessage, setGreetingMessage] = useState('');
+    const [name, setName] = useState("")
+    const [loading, setLoading] = useState("")
+    const [greetingMessage, setGreetingMessage] = useState("")
 
-    const onLoadCount = 1;
+    const onLoadCount = 1
     useEffect(() => {
         async function onLoad() {
             if (isLocalIC) {
-                await agent.fetchRootKey();
-                console.info(`Agent fetched root key`);
+                await agent.fetchRootKey()
+                console.info(`Agent fetched root key`)
             }
         }
 
-        onLoad();
-    }, [onLoadCount]);
+        onLoad()
+    }, [onLoadCount])
 
     function onChangeName(e) {
-        const newName = e.target.value;
-        setName(newName);
+        const newName = e.target.value
+        setName(newName)
     }
 
     async function sayGreeting() {
-        const greeting = await hello.greet(name);
-        setGreetingMessage(greeting);
+        setLoading("Loading...")
+        const greeting = await hello.greet(name)
+        setLoading("")
+        setGreetingMessage(greeting)
     }
 
     return (
@@ -49,15 +55,26 @@ function HomePage() {
                     Welcome to Next.js Internet Computer Starter Template!
                 </h3>
 
-                <img src="/logo.png" alt="DFINITY logo" className={styles.logo} />
+                <img
+                    src="/logo.png"
+                    alt="DFINITY logo"
+                    className={styles.logo}
+                />
 
                 <section>
                     <label htmlFor="name">Enter your name: &nbsp;</label>
-                    <input id="name" alt="Name" type="text" value={name} onChange={onChangeName} />
+                    <input
+                        id="name"
+                        alt="Name"
+                        type="text"
+                        value={name}
+                        onChange={onChangeName}
+                    />
                     <button onClick={sayGreeting}>Send</button>
                 </section>
                 <section>
                     <label>Response: &nbsp;</label>
+                    {loading}
                     {greetingMessage}
                 </section>
             </main>
