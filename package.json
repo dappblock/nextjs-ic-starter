@@ -15,10 +15,12 @@
         "build": "next build && next export",
         "start": "next start",
         "lint": "next lint",
-        "export": "next export"
+        "export": "next export",
+        "syncgencode": "DFX_NETWORK=local && npm run copy:types",
+        "copy:types": "rsync -avr .dfx/$(echo ${DFX_NETWORK:-'**'})/canisters/** --exclude='assets/' --exclude='idl/' --exclude='*.wasm' --delete ui/declarations"
     },
     "devDependencies": {
-        "eslint": "^7.31.0",
+        "eslint": "^7.32.0",
         "eslint-config-next": "^11.0.1",
         "eslint-plugin-react": "^7.24.0",
         "eslint-plugin-react-hooks": "^4.2.0"
