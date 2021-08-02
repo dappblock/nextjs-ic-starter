@@ -5,7 +5,6 @@ import { useState, useEffect } from "react"
 import styles from "../styles/Home.module.css"
 
 // Dfinity
-// Dfinity
 import { makeHelloActor } from "../ui/service/actor-adapter"
 const hello = makeHelloActor()
 
@@ -22,7 +21,9 @@ function HomePage() {
     async function sayGreeting() {
         setGreetingMessage("")
         setLoading("Loading...")
+
         const greeting = await hello.greet(name)
+
         setLoading("")
         setGreetingMessage(greeting)
     }
