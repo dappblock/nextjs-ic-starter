@@ -5,33 +5,14 @@ import { useState, useEffect } from "react"
 import styles from "../styles/Home.module.css"
 
 // Dfinity
-import { Actor, HttpAgent } from "@dfinity/agent"
-import {
-    idlFactory as hello_idl,
-    canisterId as hello_id,
-} from "dfx-generated/hello"
-
-const agent = new HttpAgent({ host: process.env.NEXT_PUBLIC_IC_HOST })
-const hello = Actor.createActor(hello_idl, { agent, canisterId: hello_id })
-
-const isLocalIC = process.env.NEXT_PUBLIC_DFX_NETWORK === "local" || false
+// Dfinity
+import { makeHelloActor } from "../ui/service/actor-adapter"
+const hello = makeHelloActor()
 
 function HomePage() {
     const [name, setName] = useState("")
     const [loading, setLoading] = useState("")
     const [greetingMessage, setGreetingMessage] = useState("")
-
-    const onLoadCount = 1
-    useEffect(() => {
-        async function onLoad() {
-            if (isLocalIC) {
-                await agent.fetchRootKey()
-                console.info(`Agent fetched root key`)
-            }
-        }
-
-        onLoad()
-    }, [onLoadCount])
 
     function onChangeName(e) {
         const newName = e.target.value
