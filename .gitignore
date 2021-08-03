@@ -15,9 +15,6 @@ canister_ids.json
 node_modules/
 out/
 
-# NodeJS
-package-lock.json
-
 # Next.js
 .next/
 
