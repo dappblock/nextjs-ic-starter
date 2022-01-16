@@ -3,10 +3,12 @@
 This project provides a simple starter template for Dfinity Internet Computer using Next.js framework as frontend.
 
 **Backend**  
-A simple greeting hello world actor function coded in Motoko.
+* A simple greeting hello world canister written in Motoko
+* ImageBucket canister written in Motoko with create image, delete image and getImageById
 
 **Frontend**  
-A simple React HTML form with name input, sending it to greet actor in backend and showing the returned result.
+* A simple React HTML form with name input, sending it to greet canister in backend and showing the returned result
+* A Image Upload HTML form with Pick a Image button, upload the image to image canister in backend, loading the image back from canister and display it using useImageObject React Hook
 
 ## Live Demo in IC Mainnet 🥳
 
@@ -103,10 +105,10 @@ In Next.js, it's located in next.config.js.
 
 ## Backend dev
 
-After marking changes in backend code e.g main.mo in /src/hello, you can deploy it to the local DFX server using:
+After marking changes in backend code e.g main.mo in /backend/service/hello, you can deploy it to the local DFX server using:
 
 ```bash
-dfx deploy hello
+dfx deploy
 ```
 
 **hello** is the backend canister name defined in dfx.json.
@@ -173,9 +175,8 @@ To do that you will need:
 -   ICP tokens and convert it to [cycles](https://sdk.dfinity.org/docs/developers-guide/concepts/tokens-cycles.html)
 -   Cycles wallet
 
-Dfiniy will offer [free cycle](https://dfinity.org/developers/) to developers soon at the time of writting. In the meantime, you can buy ICP from [crypto exchanges](https://coinmarketcap.com/currencies/internet-computer/markets/) like what I did and transfer the ICP tokens to your wallet.
-
-Follow the [Network Deployment](https://sdk.dfinity.org/docs/quickstart/network-quickstart.html) guide to create wallet.
+Follow the [Network Deployment](https://sdk.dfinity.org/docs/quickstart/network-quickstart.html) guide to create wallet.  
+Dfiniy offers [free cycle](https://faucet.dfinity.org/) to developers.
 
 Now, you can deploy your Next.js dapp to Internet Computer IC network by adding **--network ic** to the dfx subcommand. We will first update our env var to point to IC network host. Then deploy backend canister **hello** first, export Next.js static code and deploy frontend canister **hello_assets**.
 
