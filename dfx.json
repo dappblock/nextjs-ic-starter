@@ -1,7 +1,10 @@
 {
     "canisters": {
         "hello": {
-            "main": "src/hello/main.mo"
+            "main": "backend/service/Hello.mo"
+        },
+        "image": {
+            "main": "backend/service/Image.mo"
         },
         "hello_assets": {
             "dependencies": ["hello"],
@@ -14,7 +17,7 @@
             "packtool": ""
         }
     },
-    "dfx": "0.8.0",
+    "dfx": "0.8.4",
     "networks": {
         "local": {
             "bind": "127.0.0.1:8000",

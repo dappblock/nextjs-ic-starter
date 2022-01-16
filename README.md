@@ -18,7 +18,7 @@ https://u4gun-5aaaa-aaaah-qabma-cai.raw.ic0.app
 
 Install:
 
--   NodeJS 14.\* or higher https://nodejs.org/en/download/
+-   NodeJS 16.\* or higher https://nodejs.org/en/download/
 -   Internet Computer dfx CLI https://sdk.dfinity.org/docs/quickstart/local-quickstart.html
 -   Visual Studio Code (Recommended Code Editor) https://code.visualstudio.com/Download
 -   VSCode extension - Motoko (Recommended) https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko
@@ -199,17 +199,9 @@ Congratulations !! Well Done !! 👏 🚀 🎉
 
 Use Chrome Dev Tools / Console / Network. Check if the dapp uses the right canister id and hostname.
 
-## Tricks
-
-To start local canister with no [artifical delay](https://sdk.dfinity.org/docs/release-notes/0.7.1-rn.html):
-
-```bash
-dfx start --no-artificial-delay --background
-```
-
 ## Author
 
-Henry Chan, henry@controlaltdevelop.com  
+Henry Chan, henry@contentfly.app
 Twitter: @kinwo
 
 ## Contributing
