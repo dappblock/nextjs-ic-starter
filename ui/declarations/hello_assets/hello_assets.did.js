@@ -1,4 +1,4 @@
-export default ({ IDL }) => {
+export const idlFactory = ({ IDL }) => {
   const ClearArguments = IDL.Record({});
   const BatchId = IDL.Nat;
   const Key = IDL.Text;
