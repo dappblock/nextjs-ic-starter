@@ -1,33 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 // Next, React
 import Head from "next/head"
-import { useState, useEffect } from "react"
-import styles from "../styles/Home.module.css"
 
-// Dfinity
-import { makeHelloActor } from "../ui/service/actor-locator"
-const hello = makeHelloActor()
+import styles from "../ui/styles/Home.module.css"
+
+import { GreetingSection } from "../ui/components/GreetingSection"
+import { ImageSection } from "../ui/components/ImageSection"
 
 function HomePage() {
-    const [name, setName] = useState("")
-    const [loading, setLoading] = useState("")
-    const [greetingMessage, setGreetingMessage] = useState("")
-
-    function onChangeName(e) {
-        const newName = e.target.value
-        setName(newName)
-    }
-
-    async function sayGreeting() {
-        setGreetingMessage("")
-        setLoading("Loading...")
-
-        const greeting = await hello.greet(name)
-
-        setLoading("")
-        setGreetingMessage(greeting)
-    }
-
+    
     return (
         <div className={styles.container}>
             <Head>
@@ -44,22 +25,8 @@ function HomePage() {
                     className={styles.logo}
                 />
 
-                <section>
-                    <label htmlFor="name">Enter your name: &nbsp;</label>
-                    <input
-                        id="name"
-                        alt="Name"
-                        type="text"
-                        value={name}
-                        onChange={onChangeName}
-                    />
-                    <button onClick={sayGreeting}>Send</button>
-                </section>
-                <section>
-                    <label>Response: &nbsp;</label>
-                    {loading}
-                    {greetingMessage}
-                </section>
+                <GreetingSection/>
+                <ImageSection/>
             </main>
         </div>
     )

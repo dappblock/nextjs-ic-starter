@@ -27,13 +27,16 @@ img {
 }
 
 button {
-    width: 120px;
+    width: 150px;
     height: 40px;
     font-size: 1rem;
+    margin-left: 6px;
+    margin-right: 6px;
 }
 
 section {
     padding: 6px;
+    width: 600px
 }
 
 input {
