@@ -1,28 +1,31 @@
 {
-    "canisters": {
-        "hello": {
-            "main": "backend/service/Hello.mo"
-        },
-        "image": {
-            "main": "backend/service/Image.mo"
-        },
-        "hello_assets": {
-            "dependencies": ["hello"],
-            "source": ["out"],
-            "type": "assets"
-        }
+  "canisters": {
+    "hello": {
+      "main": "backend/service/Hello.mo"
     },
-    "defaults": {
-        "build": {
-            "packtool": ""
-        }
+    "image": {
+      "main": "backend/service/Image.mo"
     },
-    "dfx": "0.8.4",
-    "networks": {
-        "local": {
-            "bind": "127.0.0.1:8000",
-            "type": "ephemeral"
-        }
-    },
-    "version": 1
+    "hello_assets": {
+      "dependencies": ["hello"],
+      "source": ["out"],
+      "type": "assets",
+      "initialization_values": {
+        "memory_allocation": "8GB"
+      }
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": ""
+    }
+  },
+  "dfx": "0.8.4",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
 }

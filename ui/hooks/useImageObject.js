@@ -32,5 +32,3 @@ export const useImageObject = imageId => {
 
   return imgSrc
 }
-
-
