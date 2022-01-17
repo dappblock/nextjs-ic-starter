@@ -2,13 +2,15 @@
 
 This project provides a simple starter template for Dfinity Internet Computer using Next.js framework as frontend.
 
-**Backend**  
-* A simple greeting hello world canister written in Motoko
-* ImageBucket canister written in Motoko with create image, delete image and getImageById
+**Backend**
 
-**Frontend**  
-* A simple React HTML form with name input, sending it to greet canister in backend and showing the returned result
-* A Image Upload HTML form with Pick a Image button, upload the image to image canister in backend, loading the image back from canister and display it using useImageObject React Hook
+- A simple greeting hello world canister written in Motoko
+- ImageBucket canister written in Motoko with create image, delete image and getImageById
+
+**Frontend**
+
+- A simple React HTML form with name input, sending it to greet canister and showing the returned result
+- A Image Upload HTML form with Pick a Image button, upload the image to image canister, loading the image back from canister and display it using useImageObject React Hook
 
 ## Live Demo in IC Mainnet 🥳
 
@@ -20,10 +22,10 @@ https://u4gun-5aaaa-aaaah-qabma-cai.raw.ic0.app
 
 Install:
 
--   NodeJS 16.\* or higher https://nodejs.org/en/download/
--   Internet Computer dfx CLI https://sdk.dfinity.org/docs/quickstart/local-quickstart.html
--   Visual Studio Code (Recommended Code Editor) https://code.visualstudio.com/Download
--   VSCode extension - Motoko (Recommended) https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko
+- NodeJS 16.\* or higher https://nodejs.org/en/download/
+- Internet Computer dfx CLI https://sdk.dfinity.org/docs/quickstart/local-quickstart.html
+- Visual Studio Code (Recommended Code Editor) https://code.visualstudio.com/Download
+- VSCode extension - Motoko (Recommended) https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko
 
 ```bash
 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
@@ -64,24 +66,27 @@ dfx stop
 
 ## Project Structure
 
-Internet Computer has the concept of [Canister](https://sdk.dfinity.org/docs/developers-guide/concepts/canisters-code.html) which is a computation unit. This project has 2 canisters:
+Internet Computer has the concept of [Canister](https://sdk.dfinity.org/docs/developers-guide/concepts/canisters-code.html) which is a computation unit. This project has 3 canisters:
 
--   hello (backend)
--   hello_assets (frontend)
+- hello (backend)
+- image (backend)
+- hello_assets (frontend)
 
 Canister configuration are stored in dfx.json.
 
 ### Backend
 
-Backend code is inside /src/hello/main.mo writting in [Motoko language](https://sdk.dfinity.org/docs/language-guide/motoko.html). Motoko is a type-safe language with modern language features like async/await and actor build-in. It also has [Orthogonal persistence](https://sdk.dfinity.org/docs/language-guide/motoko.html) which I find it very interesting.
-Frontend code follows Next.js folder convention with /pages storing all React code, /public storing static files including images. This project uses CSS modules for styling which is stored in /styles.
+Backend code is inside /backend/ written in [Motoko language](https://sdk.dfinity.org/docs/language-guide/motoko.html). Motoko is a type-safe language with modern language features like async/await and actor build-in. It also has [Orthogonal persistence](https://sdk.dfinity.org/docs/language-guide/motoko.html) which I find it very interesting.
+
+Image canister is introduced from release v0.2.0. It makese use of orthogonal persistence through stable variable and provides functions for create, delete and get image. See /backend/service/Image.mo.
 
 ### Frontend
 
-Frontend code is inside /pages/index.js where the magic happens. With the generated code inside /.dfx, frontend can use RPC style call to server side actor and its functions without worrying about HTTP request and response parsing.
+Frontend code follows Next.js folder convention with /pages storing all React code, /public storing static files including images. This project uses CSS modules for styling which is stored in /ui/styles. React Components are stored in /ui/components
 
-Starting with DFX 0.8.0, we start using the DFX generated front end code locateing in .dfx/local/canisters/hello/index.js
-and adapt it to work with Next.js. The adapted code is in ui/declaration/hello/index.js .
+Entry page code is inside /pages/index.js where the magic starts. With the generated code inside /.dfx, frontend can use RPC style call to server side actor and its functions without worrying about HTTP request and response parsing.
+
+Starting with DFX 0.8.0, we start using the DFX generated front end code locateing in .dfx/local/canisters/hello/index.js and adapt it to work with Next.js. The adapted code is in ui/declaration/hello/index.js .
 
 We use a service locator pattern through actor-locator.js that will handle the dfx agent host using env var NEXT_PUBLIC_IC_HOST.
 
@@ -98,17 +103,22 @@ Calling hello actor:
 const greeting = await hello.greet(name)
 ```
 
-The beautiful part is you can invoke the hello actor greet function with async/await style as if they are on the same platform.
+The beautiful part is you can invoke the hello actor greet function with async/await style as if they are on the same platform. For details, see React Components GreetingSection.js and ImageSection.js in /ui/components/.
 
 Webpack configuration:  
 In Next.js, it's located in next.config.js.
+
+## React Hook
+
+By using React Hook with actor UI declaration, it can greatly simplify frontend dev. It encourages component based composable logic. A great example is useImageObject.js React Hook in /ui/hooks. Given a imageId, useImageObject can load the image binary and convert it to HTML image source object ready for use in <img>.
+If you look closer, useImageObject.js depends on image-serivce.js which depends on actor-locator.js. When you open ImageSection.js, you can find how useImageObject is being used to greatly reduce the complexity and the underlying calls with Canister. This is the pattern I used very often in my Content Fly Dapp project.
 
 ## Backend dev
 
 After marking changes in backend code e.g main.mo in /backend/service/hello, you can deploy it to the local DFX server using:
 
 ```bash
-dfx deploy
+dfx deploy hello
 ```
 
 **hello** is the backend canister name defined in dfx.json.
@@ -119,7 +129,7 @@ Next.js developers are familar with the handy hot code deploy in Next.js dev env
 
 After deploying your backend code as shown above, you can run Next.js local dev server **npm run dev** and edit your frontend code with all the benefits of hotcode deploy.
 
-One thing to note is we use Next.js static code export here so we can't use any features of Next.js that require server side NodeJS. I think potentially there would be ways to use Internet Computer canister as backend while deploying Next.js dapp to a hosting like Vercel that supports NodeJS server. Further research is needed on that aspect.
+One thing to note is we use Next.js static code export here for hosting in Internet Computer so we can't use any features of Next.js that require server side NodeJS. Potentially, there might be ways to use Internet Computer canister as backend while deploying Next.js dapp to a hosting like Vercel that supports NodeJS server in the future. Further research is needed on that aspect. However, if you do want to run everything decentralized on blockchain including the frontend, you would want to deploy the exported static code to Internet Computer as well.
 
 ## Deploy and run frontend in local DFX server
 
@@ -168,23 +178,21 @@ Note **NEXT_PUBLIC** is the prefix used by Next.js to make env vars available to
 
 ## Deploy to IC Network Canister
 
-The most exciting part is to deploy your Next.js / Internet Computer Dapp to production Internet Computer IC blockchain network.
+The most exciting part is to deploy your Next.js / Internet Computer Dapp to production Internet Computer mainnet blockchain network.
 
 To do that you will need:
 
--   ICP tokens and convert it to [cycles](https://sdk.dfinity.org/docs/developers-guide/concepts/tokens-cycles.html)
--   Cycles wallet
+- ICP tokens and convert it to [cycles](https://sdk.dfinity.org/docs/developers-guide/concepts/tokens-cycles.html)
+- Cycles wallet
 
 Follow the [Network Deployment](https://sdk.dfinity.org/docs/quickstart/network-quickstart.html) guide to create wallet.  
 Dfiniy offers [free cycle](https://faucet.dfinity.org/) to developers.
 
-Now, you can deploy your Next.js dapp to Internet Computer IC network by adding **--network ic** to the dfx subcommand. We will first update our env var to point to IC network host. Then deploy backend canister **hello** first, export Next.js static code and deploy frontend canister **hello_assets**.
+Now, you can deploy your Next.js Dapp to Internet Computer IC network by adding **--network ic** to the dfx subcommand. We will first update our env var to point to IC network host. Then deploy backend canister first, export Next.js static code and deploy frontend canister **hello_assets**.
 
 ```bash
 cp .env.ic .env.production
-dfx deploy --network ic hello
-npm run build
-dfx deploy --network ic hello_assets
+dfx deploy --network ic
 ```
 
 Open Chrome and go to https://[canisterId].raw.ic0.app/  
