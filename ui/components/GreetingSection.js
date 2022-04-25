@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import { useState } from "react"
 
 // Dfinity
 import { makeHelloActor } from "../service/actor-locator"
 
 export const GreetingSection = () => {
-  const [name, setName] = useState('')
-  const [loading, setLoading] = useState('')
-  const [greetingMessage, setGreetingMessage] = useState('')
+  const [name, setName] = useState("")
+  const [loading, setLoading] = useState("")
+  const [greetingMessage, setGreetingMessage] = useState("")
 
   function onChangeName(e) {
     const newName = e.target.value
@@ -14,13 +14,13 @@ export const GreetingSection = () => {
   }
 
   async function sayGreeting() {
-    setGreetingMessage('')
-    setLoading('Loading...')
+    setGreetingMessage("")
+    setLoading("Loading...")
 
     const helloActor = makeHelloActor()
     const greeting = await helloActor.greet(name)
 
-    setLoading('')
+    setLoading("")
     setGreetingMessage(greeting)
   }
 
