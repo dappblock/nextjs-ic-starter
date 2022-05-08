@@ -183,7 +183,7 @@ The most exciting part is to deploy your Next.js / Internet Computer Dapp to pro
 
 To do that you will need:
 
-- ICP tokens and convert it to [cycles](https://smartcontracts.org/docs/current/concepts/tokens-cycles)
+- ICP tokens and convert it to [cycles](https://smartcontracts.org/docs/current/concepts/tokens-cycles/)
 - Cycles wallet
 
 Follow the [Network Deployment](https://smartcontracts.org/docs/current/developer-docs/quickstart/network-quickstart/) guide to create a wallet.  
