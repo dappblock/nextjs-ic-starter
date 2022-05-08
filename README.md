@@ -23,7 +23,7 @@ https://u4gun-5aaaa-aaaah-qabma-cai.raw.ic0.app
 Install:
 
 - NodeJS 16.\* or higher https://nodejs.org/en/download/
-- Internet Computer dfx CLI https://sdk.dfinity.org/docs/quickstart/local-quickstart.html
+- Internet Computer dfx CLI https://smartcontracts.org/docs/current/developer-docs/quickstart/local-quickstart/
 - Visual Studio Code (Recommended Code Editor) https://code.visualstudio.com/Download
 - VSCode extension - Motoko (Recommended) https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko
 
@@ -66,7 +66,7 @@ dfx stop
 
 ## Project Structure
 
-Internet Computer has the concept of [Canister](https://sdk.dfinity.org/docs/developers-guide/concepts/canisters-code.html) which is a computation unit. This project has 3 canisters:
+Internet Computer has the concept of [Canister](https://smartcontracts.org/docs/current/concepts/canisters-code/) which is a computation unit. This project has 3 canisters:
 
 - hello (backend)
 - image (backend)
@@ -76,7 +76,7 @@ Canister configurations are stored in dfx.json.
 
 ### Backend
 
-Backend code is inside /backend/ written in [Motoko language](https://sdk.dfinity.org/docs/language-guide/motoko.html). Motoko is a type-safe language with modern language features like async/await and actor build-in. It also has [Orthogonal persistence](https://sdk.dfinity.org/docs/language-guide/motoko.html) which I find very interesting.
+Backend code is inside /backend/ written in [Motoko language](https://smartcontracts.org/docs/current/developer-docs/build/languages/motoko/). Motoko is a type-safe language with modern language features like async/await and actor build-in. It also has [Orthogonal persistence](https://smartcontracts.org/docs/current/developer-docs/build/languages/motoko/#orthogonal-persistence) which I find very interesting.
 
 Image canister is introduced from release v0.2.0. It makes use of orthogonal persistence through stable variables and provides functions for create, delete and get image. See /backend/service/Image.mo.
 
@@ -183,10 +183,10 @@ The most exciting part is to deploy your Next.js / Internet Computer Dapp to pro
 
 To do that you will need:
 
-- ICP tokens and convert it to [cycles](https://sdk.dfinity.org/docs/developers-guide/concepts/tokens-cycles.html)
+- ICP tokens and convert it to [cycles](https://smartcontracts.org/docs/current/concepts/tokens-cycles)
 - Cycles wallet
 
-Follow the [Network Deployment](https://sdk.dfinity.org/docs/quickstart/network-quickstart.html) guide to create a wallet.  
+Follow the [Network Deployment](https://smartcontracts.org/docs/current/developer-docs/quickstart/network-quickstart/) guide to create a wallet.  
 Dfinity offers [free cycle](https://faucet.dfinity.org/) to developers.
 
 Now, you can deploy your Next.js Dapp to Internet Computer IC network by adding **--network ic** to the dfx subcommand. We will first update our env var to point to IC network host. Then deploy the backend canister first, export Next.js static code and deploy frontend canister **hello_assets**.
