@@ -8,21 +8,13 @@
     },
     "hello_assets": {
       "dependencies": ["hello"],
+      "frontend": {
+        "entrypoint": "out/index.html"
+      },
       "source": ["out"],
       "type": "assets"
     }
   },
-  "defaults": {
-    "build": {
-      "packtool": ""
-    }
-  },
-  "dfx": "0.9.3",
-  "networks": {
-    "local": {
-      "bind": "127.0.0.1:8000",
-      "type": "ephemeral"
-    }
-  },
+  "dfx": "0.13.1",
   "version": 1
 }
