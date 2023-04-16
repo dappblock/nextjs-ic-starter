@@ -2,6 +2,12 @@
 
 This project provides a simple starter template for Dfinity Internet Computer using Next.js framework as frontend.
 
+**The Most Recent Updates**
+
+- NextJS 13.3
+- DFX 0.13.1
+- NodeJS 18.16
+
 **Backend**
 
 - A simple greeting hello world canister written in Motoko
@@ -22,13 +28,13 @@ https://u4gun-5aaaa-aaaah-qabma-cai.raw.ic0.app
 
 Install:
 
-- NodeJS 16.\* or higher https://nodejs.org/en/download/
-- Internet Computer dfx CLI https://smartcontracts.org/docs/current/developer-docs/quickstart/local-quickstart/
+- NodeJS 18.\* or higher https://nodejs.org/en/download/
+- Internet Computer dfx CLI https://internetcomputer.org/docs/current/developer-docs/setup/install/
 - Visual Studio Code (Recommended Code Editor) https://code.visualstudio.com/Download
 - VSCode extension - Motoko (Recommended) https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko
 
 ```bash
-sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
 ```
 
 Clone this Git repository:
@@ -55,7 +61,6 @@ dfx deploy
 npm run dev
 ```
 
-Open in Chrome the following URL to try the demo app:  
 http://localhost:3000/
 
 Cleanup - stop dfx server running in background:
@@ -76,17 +81,67 @@ Canister configurations are stored in dfx.json.
 
 ### Backend
 
-Backend code is inside /backend/ written in [Motoko language](https://smartcontracts.org/docs/current/developer-docs/build/languages/motoko/). Motoko is a type-safe language with modern language features like async/await and actor build-in. It also has [Orthogonal persistence](https://smartcontracts.org/docs/current/developer-docs/build/languages/motoko/#orthogonal-persistence) which I find very interesting.
+Backend code is inside /backend/ written in [Motoko language](https://internetcomputer.org/docs/current/motoko/main/motoko-introduction). Motoko is a type-safe language with modern language features like async/await and actor build-in. It also has [Orthogonal persistence](https://internetcomputer.org/docs/current/motoko/main/motoko/#orthogonal-persistence) which I find very interesting.
 
 Image canister is introduced from release v0.2.0. It makes use of orthogonal persistence through stable variables and provides functions for create, delete and get image. See /backend/service/Image.mo.
 
 ### Frontend
 
-Frontend code follows Next.js folder convention with /pages storing all React code, /public storing static files including images. This project uses CSS modules for styling which is stored in /ui/styles. React Components are stored in /ui/components
+Frontend code follows Next.js folder convention with /pages storing page React code, /public storing static files including images. This project uses CSS modules for styling which is stored in /ui/styles. React Components are stored in /ui/components
 
-Entry page code is inside /pages/index.js where the magic starts. With the generated code inside /.dfx, frontend can use RPC style call to server side actor and its functions without worrying about HTTP request and response parsing.
+Entry page code is inside /pages/index.js where the magic starts. With the DFX UI declarations generated code, frontend can use RPC style call to server side actor and its functions without worrying about HTTP request and response parsing.
 
-Starting with DFX 0.8.0, we start using the DFX generated front end code located in .dfx/local/canisters/hello/index.js and adapt it to work with Next.js. The adapted code is in ui/declaration/hello/index.js .
+To generate UI declarations:
+
+```
+dfx generate
+```
+
+It will generate files in src/declarations for each canister. In our case, it is image, hello and hello_assets but we only need the backend canister image and hello UI declarations here.
+
+The next step is to adapt it to work with Next.js.
+The final adapted code is in ui/declaration/hello/index.js.
+You can also follow the steps below to update it.
+
+Basically, copy image.did.js and index.js from src/declarations/image/
+
+```
+cp src/declarations/image/image.did.js ui/declarations/image/image.did.js
+cp src/declarations/image/index.js ui/declarations/image/index.js
+```
+
+Repeat the same for hello.
+
+```
+cp src/declarations/hello/hello.did.js ui/declarations/hello/hello.did.js
+cp src/declarations/hello/index.js ui/declarations/hello/index.js
+```
+
+The next step is to update the canister ID env variable in each canister index.js to use NEXT_PUBLIC prefix so that NextJS can recognize when compiling it.
+
+Open ui/declarations/hello/index.js and look for the line:
+
+```
+export const canisterId = process.env.HELLO_CANISTER_ID;
+```
+
+Update HELLO_CANISTER_ID to NEXT_PUBLIC_HELLO_CANISTER_ID:
+
+```
+export const canisterId = process.env.NEXT_PUBLIC_HELLO_CANISTER_ID
+```
+
+Also delete the export line at the bottom so that it won't create actor during NextJS server side compilation when you run in next dev mode.
+
+```
+export const hello = createActor(canisterId);
+```
+
+Repeat the same for ui/declarations/image/index.js.
+
+To see the final code, check the original ui/declarations in the Git repo.
+
+The generate UI declarations also support TypeScript if you prefer TypeScript.
 
 We use a service locator pattern through actor-locator.js that will handle the dfx agent host using env var NEXT_PUBLIC_IC_HOST.
 
@@ -175,7 +230,7 @@ Notice both files are identical if we want the Next.js dapp to interact with the
 
 Note **NEXT_PUBLIC** is the prefix used by Next.js to make env vars available to client side code through [build time inlining](https://nextjs.org/docs/basic-features/environment-variables).
 
-**.env.ic** is included for deployment to Internet Computer ic network which would be covered below.
+**.env.icprod** is included for deployment to Internet Computer ic network which would be covered below.
 
 ## Deploy to IC Network Canister
 
@@ -183,16 +238,16 @@ The most exciting part is to deploy your Next.js / Internet Computer Dapp to pro
 
 To do that you will need:
 
-- ICP tokens and convert it to [cycles](https://smartcontracts.org/docs/current/concepts/tokens-cycles/)
+- ICP tokens and convert it to [cycles](https://internetcomputer.org/docs/current/concepts/tokens-cycles/)
 - Cycles wallet
 
-Follow the [Network Deployment](https://smartcontracts.org/docs/current/developer-docs/quickstart/network-quickstart/) guide to create a wallet.  
+Follow the [Network Deployment](https://internetcomputer.org/docs/current/developer-docs/setup/cycles/cycles-wallet/) guide to create a wallet.  
 Dfinity offers [free cycle](https://faucet.dfinity.org/) to developers.
 
 Now, you can deploy your Next.js Dapp to Internet Computer IC network by adding **--network ic** to the dfx subcommand. We will first update our env var to point to IC network host. Then deploy the backend canister first, export Next.js static code and deploy frontend canister **hello_assets**.
 
 ```bash
-cp .env.ic .env.production
+cp .env.icprod .env.production
 dfx deploy --network ic
 ```
 
