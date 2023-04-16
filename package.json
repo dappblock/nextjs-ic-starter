@@ -1,6 +1,6 @@
 {
   "name": "nextjs_ic_template",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "Henry Chan",
   "description": "Next.js Internet Computer Starter Template",
   "keywords": [
@@ -12,33 +12,33 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "export": "next export",
+    "export": "next build",
     "sync:hello": "DFX_NETWORK=local && rsync -avr .dfx/$(echo ${DFX_NETWORK:-'**'})/canisters/hello --exclude='idl/' --exclude='*.wasm' --delete ui/declarations",
     "sync:image": "DFX_NETWORK=local && rsync -avr .dfx/$(echo ${DFX_NETWORK:-'**'})/canisters/image --exclude='idl/' --exclude='*.wasm' --delete ui/declarations"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-next": "^12.0",
-    "eslint-plugin-react": "^7.29",
-    "eslint-plugin-react-hooks": "^4.4"
+    "eslint": "^8.38.0",
+    "eslint-config-next": "^13.3",
+    "eslint-plugin-react": "^7.32",
+    "eslint-plugin-react-hooks": "^4.6"
   },
   "dependencies": {
-    "@dfinity/agent": "^0.11",
-    "@dfinity/candid": "^0.11",
-    "@dfinity/principal": "^0.11",
+    "@dfinity/agent": "^0.15",
+    "@dfinity/candid": "^0.15",
+    "@dfinity/principal": "^0.15",
     "assert": "^2.0.0",
     "buffer": "^6.0.3",
-    "compressorjs": "^1.1.1",
+    "compressorjs": "^1.2.1",
     "events": "^3.3.0",
-    "next": "^12.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-dropzone": "^11.5.1",
+    "next": "^13.3",
+    "react": "^18.2",
+    "react-dom": "^18.2",
+    "react-dropzone": "^14.2",
     "stream-browserify": "^3.0.0",
-    "util": "^0.12.4"
+    "util": "^0.12.5"
   }
 }
