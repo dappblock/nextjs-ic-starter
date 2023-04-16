@@ -19,7 +19,10 @@ export const ImageSection = () => {
 
   const { getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,
-    accept: "image/*",
+    accept: {
+      "image/png": [".png"],
+      "image/jpeg": [".jpg", ".jpeg"]
+    },
     onDrop: async acceptedFiles => {
       if (acceptedFiles.length > 0) {
         try {
