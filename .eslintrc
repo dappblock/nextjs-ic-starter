@@ -1,10 +1,6 @@
 {
   "extends": "next",
-  "plugins": ["react", "jest"],
-  "env": {
-    "jest/globals": true,
-    "jest": true
-  },
+  "plugins": ["react"],
   "globals": {
     "console": "readonly",
     "module": "readonly",
@@ -16,7 +12,6 @@
     "page": "readonly",
     "browser": "readonly",
     "context": "readonly",
-    "jestPuppeteer": "readonly",
     "Promise": "readonly",
     "setTimeout": "readonly",
     "localStorage": "readonly",
@@ -47,5 +42,9 @@
     "arrow-body-style": 0,
     "prefer-const": 1
   },
-  "ignorePatterns": ["ui/declarations/**/*.js", "ui/declarations/**/*.ts"]
+  "ignorePatterns": [
+    "ui/declarations/**/*.js",
+    "ui/declarations/**/*.ts",
+    "src/declarations/**"
+  ]
 }
