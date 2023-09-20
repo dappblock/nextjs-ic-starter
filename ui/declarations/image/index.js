@@ -4,8 +4,13 @@ import { Actor, HttpAgent } from "@dfinity/agent"
 import { idlFactory } from "./image.did.js"
 export { idlFactory } from "./image.did.js"
 
-// CANISTER_ID is replaced by webpack based on node environment
-export const canisterId = process.env.NEXT_PUBLIC_IMAGE_CANISTER_ID
+/* CANISTER_ID is replaced by webpack based on node environment
+ * Note: canister environment variable will be standardized as
+ * process.env.CANISTER_ID_<CANISTER_NAME_UPPERCASE>
+ * beginning in dfx 0.15.0
+ */
+export const canisterId =
+  process.env.CANISTER_ID_IMAGE || process.env.NEXT_PUBLIC_IMAGE_CANISTER_ID
 
 export const createActor = (canisterId, options = {}) => {
   const agent = options.agent || new HttpAgent({ ...options.agentOptions })

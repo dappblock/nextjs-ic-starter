@@ -4,8 +4,8 @@ This project provides a simple starter template for Dfinity Internet Computer us
 
 **The Most Recent Updates**
 
-- NextJS 13.3
-- DFX 0.13.1
+- NextJS 13.5
+- DFX 0.15
 - NodeJS 18.16
 
 **Backend**
@@ -131,17 +131,9 @@ Update HELLO_CANISTER_ID to NEXT_PUBLIC_HELLO_CANISTER_ID:
 export const canisterId = process.env.NEXT_PUBLIC_HELLO_CANISTER_ID
 ```
 
-Also delete the export line at the bottom so that it won't create actor during NextJS server side compilation when you run in next dev mode.
-
-```
-export const hello = createActor(canisterId);
-```
-
-Repeat the same for ui/declarations/image/index.js.
-
 To see the final code, check the original ui/declarations in the Git repo.
 
-The generate UI declarations also support TypeScript if you prefer TypeScript.
+The generated UI declarations also support TypeScript if you prefer TypeScript.
 
 We use a service locator pattern through actor-locator.js that will handle the dfx agent host using env var NEXT_PUBLIC_IC_HOST.
 

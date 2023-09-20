@@ -1,10 +1,18 @@
 {
   "canisters": {
     "hello": {
-      "main": "backend/service/Hello.mo"
+      "main": "backend/service/Hello.mo",
+      "type": "motoko",
+      "declarations": {
+        "node_compatibility": true
+      }
     },
     "image": {
-      "main": "backend/service/Image.mo"
+      "main": "backend/service/Image.mo",
+      "type": "motoko",
+      "declarations": {
+        "node_compatibility": true
+      }
     },
     "hello_assets": {
       "dependencies": ["hello"],
@@ -15,6 +23,6 @@
       "type": "assets"
     }
   },
-  "dfx": "0.13.1",
+  "dfx": "0.15.0",
   "version": 1
 }
