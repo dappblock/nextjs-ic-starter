@@ -23,6 +23,13 @@
       "type": "assets"
     }
   },
-  "dfx": "0.15.0",
-  "version": 1
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1,
+  "dfx": "0.25.0"
 }

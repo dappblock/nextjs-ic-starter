@@ -4,9 +4,9 @@ This project provides a simple starter template for Dfinity Internet Computer us
 
 **The Most Recent Updates**
 
-- NextJS 13.5
-- DFX 0.15
-- NodeJS 18.16
+- NextJS 15.2.0
+- DFX 0.25.0
+- NodeJS 22.12.0
 
 **Backend**
 
@@ -57,7 +57,7 @@ Enter the commands to install dependencies, deploy canister and run Next.js dev 
 
 ```bash
 npm install
-dfx deploy
+dfx deploy --network local
 npm run dev
 ```
 
